@@ -8,85 +8,147 @@ export default function Home() {
   const router = useRouter();
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
-      {/* Hero Section */}
-      <div className="container mx-auto px-4 py-20">
-        <div className="flex flex-col items-center text-center space-y-8">
-          <h1 className="text-5xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-600">
-            Create Stunning Event DPs
+    <div className="relative isolate overflow-hidden bg-gray-900">
+      {/* Background Pattern */}
+      <svg
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 size-full stroke-white/10 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
+      >
+        <defs>
+          <pattern
+            x="50%"
+            y={-1}
+            id="983e3e4c-de6d-4c3f-8d64-b9761d1534cc"
+            width={200}
+            height={200}
+            patternUnits="userSpaceOnUse"
+          >
+            <path d="M.5 200V.5H200" fill="none" />
+          </pattern>
+        </defs>
+        <svg x="50%" y={-1} className="overflow-visible fill-gray-800/20">
+          <path
+            d="M-200 0h201v201h-201Z M600 0h201v201h-201Z M-400 600h201v201h-201Z M200 800h201v201h-201Z"
+            strokeWidth={0}
+          />
+        </svg>
+        <rect fill="url(#983e3e4c-de6d-4c3f-8d64-b9761d1534cc)" width="100%" height="100%" strokeWidth={0} />
+      </svg>
+
+      {/* Gradient Blur */}
+      <div
+        aria-hidden="true"
+        className="absolute left-[calc(50%-4rem)] top-10 -z-10 transform-gpu blur-3xl sm:left-[calc(50%-18rem)] lg:left-48 lg:top-[calc(50%-30rem)] xl:left-[calc(50%-24rem)]"
+      >
+        <div
+          style={{
+            clipPath:
+              'polygon(73.6% 51.7%, 91.7% 11.8%, 100% 46.4%, 97.4% 82.2%, 92.5% 84.9%, 75.7% 64%, 55.3% 47.5%, 46.5% 49.4%, 45% 62.9%, 50.3% 87.2%, 21.3% 64.1%, 0.1% 100%, 5.4% 51.1%, 21.4% 63.9%, 58.9% 0.2%, 73.6% 51.7%)',
+          }}
+          className="aspect-[1108/632] w-[69.25rem] bg-gradient-to-r from-[#80caff] to-[#4f46e5] opacity-20"
+        />
+      </div>
+
+      {/* Navigation */}
+      <nav className="absolute top-0 left-0 right-0 z-10">
+        <div className="container mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <Link href="/" className="text-xl font-semibold text-white">
+              NexDP
+            </Link>
+            <div className="hidden md:flex items-center space-x-8">
+              <Link href="/templates" className="text-gray-300 hover:text-white">
+                Templates
+              </Link>
+              <Link href="/docs" className="text-gray-300 hover:text-white">
+                Documentation
+              </Link>
+              <Link href="/pricing" className="text-gray-300 hover:text-white">
+                Pricing
+              </Link>
+              <button 
+                onClick={() => router.push('/login')}
+                className="text-gray-300 hover:text-white"
+              >
+                Sign in
+              </button>
+              <button 
+                onClick={() => router.push('/template-config')}
+                className="rounded-md bg-indigo-500 px-3.5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400"
+              >
+                Get Started
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Main Content */}
+      <div className="mx-auto max-w-7xl px-6 pb-24 pt-10 sm:pb-32 lg:flex lg:px-8 lg:py-40">
+        <div className="mx-auto max-w-2xl shrink-0 lg:mx-0 lg:pt-8">
+          <div className="mt-24 sm:mt-32 lg:mt-16">
+            <a href="#" className="inline-flex space-x-6">
+              <span className="rounded-full bg-indigo-500/10 px-3 py-1 text-sm/6 font-semibold text-indigo-400 ring-1 ring-inset ring-indigo-500/20">
+                What's new
+              </span>
+              <span className="inline-flex items-center space-x-2 text-sm/6 font-medium text-gray-300">
+                <span>Just launched v1.0</span>
+                <span className="text-gray-500">→</span>
+              </span>
+            </a>
+          </div>
+          <h1 className="mt-10 text-pretty text-5xl font-semibold tracking-tight text-white sm:text-7xl">
+            Create Stunning Event Display Pictures
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl">
+          <p className="mt-8 text-pretty text-lg font-medium text-gray-400 sm:text-xl/8">
             Transform your events with professional display pictures. Choose from our curated templates and customize them to match your brand.
           </p>
-          <div className="flex gap-4 mt-8">
-            <button 
+          <div className="mt-10 flex items-center gap-x-6">
+            <button
               onClick={() => router.push('/template-config')}
-              className="px-8 py-3 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition-colors"
+              className="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
             >
-              Get Started
+              Get started
             </button>
             <button 
-              onClick={() => router.push('/template-config')}
-              className="px-8 py-3 border border-purple-600 text-purple-600 rounded-full hover:bg-purple-50 transition-colors"
+              onClick={() => router.push('/docs')}
+              className="text-sm/6 font-semibold text-white"
             >
-              View Templates
+              Learn more <span aria-hidden="true">→</span>
             </button>
           </div>
         </div>
-      </div>
-
-      {/* Features Section */}
-      <div className="container mx-auto px-4 py-20">
-        <div className="grid md:grid-cols-3 gap-8">
-          <div className="p-6 rounded-xl bg-white dark:bg-gray-800 shadow-lg">
-            <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center mb-4">
-              <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-semibold mb-2">Beautiful Templates</h3>
-            <p className="text-gray-600 dark:text-gray-300">Choose from hundreds of professionally designed templates for any occasion.</p>
+        <div className="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none xl:ml-32">
+          <div className="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
+            <img
+              alt="App screenshot"
+              src="/screenshot.png"
+              width={2432}
+              height={1442}
+              className="w-[76rem] rounded-md bg-white/5 shadow-2xl ring-1 ring-white/10"
+            />
           </div>
-
-          <div className="p-6 rounded-xl bg-white dark:bg-gray-800 shadow-lg">
-            <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mb-4">
-              <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-semibold mb-2">Easy Customization</h3>
-            <p className="text-gray-600 dark:text-gray-300">Customize colors, fonts, and layouts to match your event's theme.</p>
-          </div>
-
-          <div className="p-6 rounded-xl bg-white dark:bg-gray-800 shadow-lg">
-            <div className="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center mb-4">
-              <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-semibold mb-2">Instant Download</h3>
-            <p className="text-gray-600 dark:text-gray-300">Get your customized DP ready to share in seconds.</p>
-          </div>
-        </div>
-      </div>
-
-      {/* CTA Section */}
-      <div className="container mx-auto px-4 py-20">
-        <div className="bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl p-12 text-center text-white">
-          <h2 className="text-3xl font-bold mb-4">Ready to Create Your Event DP?</h2>
-          <p className="text-xl mb-8">Join thousands of event organizers who trust NexDP for their display pictures.</p>
-          <button 
-            onClick={() => router.push('/template-config')}
-            className="px-8 py-3 bg-white text-purple-600 rounded-full hover:bg-gray-100 transition-colors"
-          >
-            Start Creating Now
-          </button>
         </div>
       </div>
 
       {/* Footer */}
-      <footer className="container mx-auto px-4 py-8 text-center text-gray-600 dark:text-gray-400">
-        <p>© 2024 NexDP. All rights reserved.</p>
+      <footer className="border-t border-white/10">
+        <div className="container mx-auto px-6 py-8">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-gray-400">© 2024 NexDP. All rights reserved.</p>
+            <div className="flex space-x-6 mt-4 md:mt-0">
+              <Link href="/docs" className="text-gray-400 hover:text-white">
+                Documentation
+              </Link>
+              <Link href="/privacy" className="text-gray-400 hover:text-white">
+                Privacy
+              </Link>
+              <Link href="/terms" className="text-gray-400 hover:text-white">
+                Terms
+              </Link>
+            </div>
+          </div>
+        </div>
       </footer>
     </div>
   );
