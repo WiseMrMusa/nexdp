@@ -37,7 +37,11 @@ venv
 
 # Test coverage
 coverage/
-
+# Python compiled files
+*__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
 # Dependency directories
 bower_components/
 
