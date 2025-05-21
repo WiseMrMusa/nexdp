@@ -1,4 +1,4 @@
-import { jwtDecode } from 'jwt-decode';
+export const BASE_URL = 'http://localhost:8000';
 
 export interface User {
   id: string;
@@ -12,35 +12,48 @@ export interface AuthResponse {
   token: string;
 }
 
-// Mock user credentials
-const MOCK_USER = {
-  email: 'demo@nexdp.com',
-  password: 'demo123',
-  user: {
-    id: '1',
-    email: 'demo@nexdp.com',
-    username: 'demo',
-    fullName: 'Demo User'
-  }
-};
+export const login = async (username: string, password: string): Promise<AuthResponse> => {
+  const response = await fetch(`${BASE_URL}/auth/signin`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      username,
+      password
+    })
+  });
 
-export const login = async (email: string, password: string): Promise<AuthResponse> => {
-  // Mock authentication
-  if (email === MOCK_USER.email && password === MOCK_USER.password) {
-    const mockToken = 'mock-jwt-token';
-    localStorage.setItem('token', mockToken);
-    return {
-      user: MOCK_USER.user,
-      token: mockToken
-    };
+  if (!response.ok) {
+    throw new Error('Invalid username or password');
   }
 
-  throw new Error('Invalid email or password');
+  const { user, token } = await response.json();
+  localStorage.setItem('token', token);
+  return { user, token };
 };
 
 export const signup = async (email: string, password: string, username: string, fullName: string): Promise<AuthResponse> => {
-  // For demo purposes, we'll just log in with the mock user
-  return login(MOCK_USER.email, MOCK_USER.password);
+  const response = await fetch(`${BASE_URL}/auth/signup`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      email,
+      username,
+      full_name: fullName,
+      password
+    })
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to signup');
+  }
+
+  const { user, token } = await response.json();
+  localStorage.setItem('token', token);
+  return { user, token };
 };
 
 export const logout = () => {
@@ -54,10 +67,10 @@ export const getToken = () => {
 };
 
 export const isAuthenticated = () => {
-  return true;
+  return !!getToken();
 };
 
 export const getAuthHeader = (): HeadersInit => {
   const token = getToken();
   return token ? { Authorization: `Bearer ${token}` } : { Authorization: '' };
-}; 
+};
