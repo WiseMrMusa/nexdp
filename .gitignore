@@ -1,49 +1,49 @@
-# See https://help.github.com/articles/ignoring-files/#gitignore-example
-# Ignore Node.js build artifacts
+# Node.js dependencies
 node_modules/
-# Ignore logs
-logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pids
-*.pid
-*.seed
+
+# Logs
+logs/
 *.log
-# Ignore cache
-.nuxt
-.cache
-# Ignore editor directories and files
-*.sublime-project
-*.sublime-workspace
-.atom/
+*.log.*
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Build output
+dist/
+build/
+out/
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+*.bak
+
+# IDE files
 .vscode/
 .idea/
-.vim/
-.zsh_history
-.env.local
-.env.development.local
-.env.production.local
-.env.test.local
-# Ignore OSX file system files
+*.iml
+
+# OS generated files
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db
-# Ignore temporary files
-*.log
-*.tmp
-*.temp
-# Ignore build artifacts
-build/
-dist/
-# Ignore Next.js build artifacts
-.next/
-.vercel/
-.env.local
-.env.development.local
-.env.production.local
-.env.test.local
+venv
+
+# Test coverage
+coverage/
+
+# Dependency directories
+bower_components/
+
+# Miscellaneous
+*.lock
+*.cache
+*.pid
+*.seed
+*.pid.lock
