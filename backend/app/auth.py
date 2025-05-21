@@ -62,12 +62,12 @@ def signup(request: SignupRequest, db: Session = Depends(get_db)):
     return {"message": "User created successfully"}
 
 @router.post("/signin")
-def signin(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
-    user = db.query(User).filter(User.email == form_data.username).first()
-    if not user or not pwd_context.verify(form_data.password, user.hashed_password):
+def signin(username: str, password: str, db: Session = Depends(get_db)):
+    user = db.query(User).filter(User.username == username).first()
+    if not user or not pwd_context.verify(password, user.hashed_password):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid email or password",
+            detail="Invalid username or password",
             headers={"WWW-Authenticate": "Bearer"},
         )
 

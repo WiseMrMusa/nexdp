@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 export default function Home() {
   const router = useRouter();
 
+
   return (
     <div className="relative isolate overflow-hidden bg-gray-900">
       {/* Background Pattern */}
@@ -56,29 +57,18 @@ export default function Home() {
             <Link href="/" className="text-xl font-semibold text-white">
               NexDP
             </Link>
-            <div className="hidden md:flex items-center space-x-8">
-              <Link href="/templates" className="text-gray-300 hover:text-white">
-                Templates
-              </Link>
-              <Link href="/docs" className="text-gray-300 hover:text-white">
-                Documentation
-              </Link>
-              <Link href="/pricing" className="text-gray-300 hover:text-white">
-                Pricing
-              </Link>
-              <button 
-                onClick={() => router.push('/login')}
-                className="text-gray-300 hover:text-white"
-              >
-                Sign in
-              </button>
-              <button 
-                onClick={() => router.push('/template-config')}
-                className="rounded-md bg-indigo-500 px-3.5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400"
-              >
-                Get Started
-              </button>
-            </div>
+            <button 
+              onClick={() => router.push('/login')}
+              className="text-gray-300 hover:text-white"
+            >
+              Sign in
+            </button>
+            <button 
+              onClick={() => router.push('/template-config')}
+              className="rounded-md bg-indigo-500 px-3.5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400"
+            >
+              Get Started
+            </button>
           </div>
         </div>
       </nav>
@@ -135,7 +125,7 @@ export default function Home() {
       <footer className="border-t border-white/10">
         <div className="container mx-auto px-6 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400">© 2024 NexDP. All rights reserved.</p>
+            <p className="text-gray-400"> 2024 NexDP. All rights reserved.</p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <Link href="/docs" className="text-gray-400 hover:text-white">
                 Documentation
