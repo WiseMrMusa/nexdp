@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, Query
 from fastapi.security import OAuth2PasswordRequestForm, OAuth2PasswordBearer
 from sqlalchemy.orm import Session
 from app.database import get_db
@@ -7,10 +7,11 @@ from passlib.context import CryptContext
 from jose import jwt, JWTError
 from pydantic import BaseModel
 from fastapi_mail import FastMail, MessageSchema, ConnectionConfig
+import bcrypt
 
 router = APIRouter()
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+pwd_context = CryptContext(schemes=["sha256_crypt"], deprecated="auto")
 SECRET_KEY = "secreatkey"
 ALGORITHM = "HS256"  
 
@@ -62,7 +63,11 @@ def signup(request: SignupRequest, db: Session = Depends(get_db)):
     return {"message": "User created successfully"}
 
 @router.post("/signin")
-def signin(username: str, password: str, db: Session = Depends(get_db)):
+def signin(
+    username: str = Query(..., description="Username for authentication"),
+    password: str = Query(..., description="Password for authentication"),
+    db: Session = Depends(get_db)
+):
     user = db.query(User).filter(User.username == username).first()
     if not user or not pwd_context.verify(password, user.hashed_password):
         raise HTTPException(
